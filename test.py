@@ -37,32 +37,32 @@ def running(res):
         js['upvote_ratio']=post['data']['upvote_ratio']
         js['ups']=post['data']['ups']
         lastname=post['data']['name']
-        with open(f'{word}.json','a') as ft:
-            json.dump(js, ft)
-            ft.write('\n')
+        with open(f'{word}.json','a') as word:
+            json.dump(js, word)
+            word.write('\n')
 
-    with open('pagination.csv','a') as fx:
-        fx.writelines(f'{str(lastname)}\n')
+    with open('pagination.csv','a') as pag:
+        pag.writelines(f'{str(lastname)}\n')
        
     print(df)
 
 
 
 
-with open('pagination.csv','a') as ftr:
+with open('pagination.csv','a') as pagination:
     try:
-        last_line = csv.reader(ftr)
+        last_line = csv.reader(pagination)
         for satir in last_line:
             a=satir
         pagi=str(a).replace("['","").replace("']","")
         res=requests.get(f'https://oauth.reddit.com/r/{word}/new.json?limit={limit}&after={pagi}',headers=headers)
         running(res)
-        print("TRY")
+
     except:
         res=requests.get(f'https://oauth.reddit.com/r/{word}/new.json?limit={limit}',headers=headers)
         last_line=res.json()['data']['children'][-1]['data']['name']
         running(res)
-        print("except")
+
 
 
 
