@@ -13,7 +13,7 @@ SECRET_KEY=os.getenv("SECRET_KEY")
 auth=requests.auth.HTTPBasicAuth(CLIENT_ID,SECRET_KEY)
 data={
     'grant_type':'password',
-    'username':'fatmayilmaz209',
+    'username':os.getenv("USERNAME"),
     'password':os.getenv("PASSWORD")
 }
 
