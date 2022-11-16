@@ -10,7 +10,7 @@ channel = connection.channel() # start a channel
 channel.queue_declare(queue='hello', durable=True)
 
 
-with open("flower.json","r") as dd:
+with open("purple.json","r") as dd:
     for mes in dd.readlines():
         print(mes)
         channel.basic_publish(exchange='',
